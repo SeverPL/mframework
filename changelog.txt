@@ -1,0 +1,67 @@
+M.FRAMEWORK CHANGELOG
+
+---------ENGINE--------------------------------------------------------------------------------------------
+*********15.06.2014 11:50 - 1.0.1.4
+-Rozpoczęcie prac
+-implementacja: getExtension()
+-implementacja: tnij()
+-implementacja: data()
+-implementacja: html_meta_tags()
+-implementacja: html_doctype()
+-implementacja: html_css()
+-implementacja: html_script()
+-implementacja: mf_mysql_query()
+-implementacja: mf_log()
+*********20.06.2014 11:08 - 1.1.0.0a
+- implementacja mf_microtime(), mf_gentime_start()
+mf_gentime stop() służących do mierzenia czasu generowania strony
+*********22.06.2014 10:42 - 1.1.1.0a
+-mf_log() - mozliwosc wylączenia logowania w pliku konfiguracyjnym przez zmianę zmiennej $mf_debug_log na false
+*12:52
+- implementacja zmiennej $mf_ver_engine przechowującej dane o wersji
+*13:01
+- mf_gentime_stop zaokrągla teraz do 8 miejsca po przecinku
+
+
+*******2014-08-14 15:31 - 2.0.0.0
+- Przepisywanie silnika na obiektowość
+- naprawienie bledu funkcji mf_mysql_query - teraz poprawnie zwraca rezultat zapytania SELECT
+
+---------mf_pages------------------------------------------------------------------------------------------
+*********15.06.2014 11:14
+-Rozpoczęcie prac (1.0.0.1 a)
+-utrworzenie podstawowej struktury bazy danych
+-implementacja: mf_pages_getpage()
+-implementacja: mf_pages_gettitle()
+-implementacja: mf_getcontent()
+*********22.06.2014 12:53
+- implementacja zmiennej $mf_ver_pages przechowującej dane o wersji
+*********15.08.2014 13:35 v.2.0.0.0
+- usunięcie poprzednich funkcji i mplementacja klasy: mf_pages
+
+---------mf_users------------------------------------------------------------------------------------------
+********** 21.06.2014 13:35
+-rozpoczęcie (1.0.0.1a)
+* 13:58
+-implementacja mf_users_logincheck()
+-implementacja mf_users_login()		
+********** 22.06.2014 10:33
+implementacja mf_users_createuser()
+*12:54
+- implementacja zmiennej $mf_ver_users przechowującej dane o wersji
+
+--------config.php-----------------------------------------------------------------------------------------
+*********15.06.2014 11:50
+-implementacja
+*********20.06.2014 10:53
+-dodanie zmiennej $mf_debug_show_gentime odpowiedzialnej za wyswietlaniue czasu generowania strony
+*********22.06.2014 10:40
+-dodanie zmiennej $mf_debug_log odpowiedzialnej za logowanie zdarzeń
+
+--------instalator------------------------------------------------------------------------------------------
+*********15.06.2014 13:25
+-implementacja i rozwój instalacji struktur bazy jądra do 19 czerwca v. 1.0.0.0 a
+*********2014.06.22 11:37 - v1.0.1.0
+-implementacja instalacji struktur bazy podstron
+*12:47
+-implementacja instalacji struktur bazy uzytkownikow
