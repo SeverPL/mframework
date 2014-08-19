@@ -1,7 +1,7 @@
 <?php
 /* Rozszerzenie 'Users' dla m.framework
- * Wersja rozszerzenia: 1.1.0.0 a
-* 21 Czerwca 2014 13:35
+ * Wersja rozszerzenia: 2.1.0.0 a
+* 19 Sierpnia 2014 22:56
 * Mateusz Wiśniewski © 2014
 *
 * mf_users
@@ -17,7 +17,7 @@
 * ACTIVE - Aktywnosc konta
 * LASTLOGIN - data ostatniego logowania
 */
-$mf_ver_users = '2.0.0.0a';
+$mf_ver_users = '2.1.0.0a';
 
 function mf_users_logincheck($metoda){ //funkcja zwraca true jesli uzytkownik jest zalogowany, false jesli nie
 	/*
@@ -124,6 +124,11 @@ function mf_users_createuser($user, $password, $email){ // tworzenie uzytkownika
  	private $_mail = null;
  	private $_active = null;
  	private $_lastlogin = null;
+ 	private $_db = null;
+ 	
+ 	public function __construct($db){
+ 		$this->_db = $db;
+ 	}
  	
  	public function setUsername($user){ //ustawienie nazwy uzytkownika
  		$this->_user = $user;
@@ -154,28 +159,27 @@ function mf_users_createuser($user, $password, $email){ // tworzenie uzytkownika
  	}
  	public function createUser(){ //tworzenie uzytkownika
  		global $mf_prefix;
- 		$db = new mf_db; //WYMAGA KLASY mf_db
  		$query = "SELECT * FROM ".$mf_prefix."users WHERE `USER`='$this->_user'";
- 		$result = $db->mf_mysql_query($query);
+ 		$result = $this->_db->mf_mysql_query($query);
  		$check = mysql_num_rows($result);
  		if($check==0){ //jezeli nie ma takiego użytkownika
  			
  			$query = "SELECT * FROM ".$mf_prefix."users WHERE `MAIL`='$this->_email'";
- 			$result = $db->mf_mysql_query($query);
+ 			$result = $this->_db->mf_mysql_query($query);
  			$check = mysql_num_rows($result);
  			
  			if($check==0){ // rejestracja użytkownika
  				$query = "INSERT INTO ".$mf_prefix."users SET `USER`='$user',`PASSWORD`='$password', `MAIL`='$email'";
- 				$insert = $db->mf_mysql_query($query);
+ 				$insert = $this->_db->mf_mysql_query($query);
  				if($insert){ //rejestracja uzytkownika pomyslna
  					$log_content = "Rejestracja użytkownika $user na adres email $email";
- 					$db->mf_log($log_content, '1');
+ 					$this->_db->mf_log($log_content, '1');
  					return true;
  				}
  				else{ //zwrot błędu sql
  					$sql_error = mysql_error();
  					$log_content = "Błąd SQL przy rejestracji użytkownika $user na adres email $email - $sql_error";
- 					$db->mf_log($log_content, '4');
+ 					$this->_db->mf_log($log_content, '4');
  					return $sql_error;
  				}
  			}
@@ -196,7 +200,6 @@ function mf_users_createuser($user, $password, $email){ // tworzenie uzytkownika
 	 * cookie - sprawdza zalogowanie tylko za pomocą ciasteczka 'zalogowany' - bez weryfikacji danych logowania
 	 */
 	global $mf_prefix;
-	$db = new mf_db;
 	if($metoda=='cookie'){
 		if(isset($_SESSION['mf_zalogowany'])){
 			if($_SESSION['mf_zalogowany']==true){
@@ -217,7 +220,7 @@ function mf_users_createuser($user, $password, $email){ // tworzenie uzytkownika
 			$userpass = $_SESSION['mf_pass'];
 		
 			$query = "SELECT * FROM ".$mf_prefix."users WHERE `USER`='$userlogin' AND `PASSWORD`='$userpass'";
-			$result = $db->mf_mysql_query($query);
+			$result = $this->_db->mf_mysql_query($query);
 			$check = mysql_num_rows($result);
 			if($check>0){
 				return true; //user niezalogowany

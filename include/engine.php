@@ -1,13 +1,20 @@
 <?php
 #include('config.php');
 /*
- * m.framework - engine - v.2.0.0.2a
+ * m.framework - engine - v.2.1.0.0.a
  * 19 Sierpnia 2014 15:14
  * 
  * Copyright by Mateusz Wiśniewski © 2014 
  */
-$mf_ver_engine = '2.0.0.2a';
+$mf_ver_engine = '2.1.0.0a';
 class mf_engine{	
+	private $_mf_time_start = null;
+ 	private $_mf_debug_show_gentime = null;
+ 	
+ 	public function __construct($mf_debug_show_gentime){
+ 		$this->_mf_debug_show_gentime = $mf_debug_show_gentime; 		
+ 	}
+ 	
 	function getExtension($str) {
     	     $i = strrpos($str,".");
          	if (!$i) { return ""; } 
@@ -84,20 +91,17 @@ class mf_engine{
  		return $przetworzona;
  	}
 
- 	function mf_microtime(){ //funkcja do mierzenia czasu generowania strony
+ 	private function mf_microtime(){ //funkcja do mierzenia czasu generowania strony
  		list($usec, $sec) = explode(" ",microtime());
  		return ((float)$usec + (float)$sec);
  	}
- 	function mf_gentime_start(){ //funkcja do rozpoczęcia mierzenia czasu generowania strony, umieszczana na początku dokumentu
- 		global $mf_time_start;
- 		$mf_time_start = $this->mf_microtime();
+ 	public function mf_gentime_start(){ //funkcja do rozpoczęcia mierzenia czasu generowania strony, umieszczana na początku dokumentu
+ 		$this->_mf_time_start = $this->mf_microtime();
  	}
- 	function mf_gentime_stop(){
- 		global $mf_time_start;
- 		global $mf_debug_show_gentime;
+ 	public function mf_gentime_stop(){
  		$mf_time_end = $this->mf_microtime();
- 		$mf_gentime = substr($mf_time_end - $mf_time_start, 0, 8);
- 		if($mf_debug_show_gentime==true){
+ 		$mf_gentime = substr($mf_time_end - $this->_mf_time_start, 0, 8);
+ 		if($this->_mf_debug_show_gentime==true){
  			echo"<center><small>Strona została wygnerowana w $mf_gentime sekund.</small></center>";
  		}
  	}

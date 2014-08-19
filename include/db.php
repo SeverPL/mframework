@@ -1,7 +1,7 @@
 <?php
 /*
- * m.framework - dbconnector - v.1.0.0.0
-* 20 czerwca 2014 10:19
+ * m.framework - dbconnector - v.2.1.0.0
+* 19 Sierpnia 2014 15:42
 *
 * Copyright by Mateusz Wiśniewski © 2014
 */
@@ -11,7 +11,8 @@ mysql_select_db($db_name, $chandle) or die ($db_name . " Nie znaleziono bazy dan
 mysql_query("SET NAMES 'utf8'");
 
 class mf_db{
-	function mf_mysql_query($query){
+	
+	public function mf_mysql_query($query){
 		global $mf_sql_queries;
 		global $mf_debug_show_queries;
 		$ins = mysql_query($query);
@@ -23,7 +24,7 @@ class mf_db{
 			return $ins;
 		}
 	}
-	function mf_log($tresc, $typ){
+	public function mf_log($tresc, $typ){
 		global $mf_prefix;
 		global $mf_debug_log;
 	
@@ -46,7 +47,7 @@ class mf_db{
 	
 			$czas = date("Y-m-d H:i:s");
 			$query = "INSERT INTO ".$mf_prefix."logs SET IP='$akcjaip', AKCJA='$tresc', CZAS='$czas', TYP='$typ'";
-			mf_mysql_query($query);
+			$this->mf_mysql_query($query);
 			#===============================================
 		}
 	}

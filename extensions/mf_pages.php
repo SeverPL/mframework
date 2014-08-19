@@ -1,7 +1,7 @@
 <?php
 /* Rozszerzenie 'Podstrony' dla m.framework
- * Wersja rozszerzenia: 1.0.0.1 a
- * 20 Czerwca 2014 10:21
+ * Wersja rozszerzenia: 2.1.0.0 a
+ *19 Sierpnia 2014 10:21
  * Mateusz Wiśniewski © 2014
  * 
  * mf_pages
@@ -15,10 +15,15 @@
  * CREATED - Data utworzenia
  * EDITED - Data edycji
  * HIDDEN - ukrywa badz pokazuje podstrone
+ * 
+ * 
+ * DO KONSTRUKTORA NALEŻY PRZEKAZAĆ OBIEKT $db klasy mf_db i PREFIX BAZY DANYCH
  */
-$mf_ver_pages = '2.0.0.0a';
+$mf_ver_pages = '2.0.1.0a';
 
 class mf_pages{
+	private $_db = null;
+	private $_mf_prefix = null;
 	private $_id = null;
 	private $_title = null;
 	private $_content = null;
@@ -26,11 +31,14 @@ class mf_pages{
 	private $_created = null;
 	private $_edited = null;
 	
+	public function __construct($mf_prefix, $db){
+		$this->_db = $db;
+		$this->_mf_prefix = $mf_prefix;
+	}
+	
 	public function getPage($gid){ //wczytanie danych
-		global $mf_prefix;
-		$db = new mf_db;
-		$query = "SELECT * FROM ".$mf_prefix."pages WHERE ID='$gid'";
-		$result = $db->mf_mysql_query($query);
+		$query = "SELECT * FROM ".$this->_mf_prefix."pages WHERE ID='$gid'";
+		$result = $this->_db->mf_mysql_query($query);
 		$check = mysql_num_rows($result);
 		if($check>0){
 			$row = mysql_fetch_assoc($result);

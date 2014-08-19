@@ -21,11 +21,16 @@ mf_gentime stop() służących do mierzenia czasu generowania strony
 - implementacja zmiennej $mf_ver_engine przechowującej dane o wersji
 *13:01
 - mf_gentime_stop zaokrągla teraz do 8 miejsca po przecinku
-
-
 *******2014-08-14 15:31 - 2.0.0.0
 - Przepisywanie silnika na obiektowość
 - naprawienie bledu funkcji mf_mysql_query - teraz poprawnie zwraca rezultat zapytania SELECT
+*******2014-08-18 12:40 - 2.0.0.1
+- Dodano obsługę HTML5 : html_meta_tags -> html5_meta_tags etc.
+*******2014-08-19 15:15 - 2.1.0.0
+- dodano cookieinfo(); do klasy mf_head
+- naprawa błędu liczenia czasu generowania strony
+- utworzenie konstruktora klasy
+---------mf_db------------------------------------------------------------------------------------------
 
 ---------mf_pages------------------------------------------------------------------------------------------
 *********15.06.2014 11:14
@@ -38,7 +43,8 @@ mf_gentime stop() służących do mierzenia czasu generowania strony
 - implementacja zmiennej $mf_ver_pages przechowującej dane o wersji
 *********15.08.2014 13:35 v.2.0.0.0
 - usunięcie poprzednich funkcji i mplementacja klasy: mf_pages
-
+*******2014-08-19 21:56 - 2.1.0.0
+- Utworzenie konstruktora do którego przekazywany jest obiekt klasy mf_db i prefix bazy danych
 ---------mf_users------------------------------------------------------------------------------------------
 ********** 21.06.2014 13:35
 -rozpoczęcie (1.0.0.1a)
@@ -49,7 +55,9 @@ mf_gentime stop() służących do mierzenia czasu generowania strony
 implementacja mf_users_createuser()
 *12:54
 - implementacja zmiennej $mf_ver_users przechowującej dane o wersji
-
+*******2014-08-19 15:15 - 2.1.0.0
+- Przepisanie skryptu na obiektowosc
+- utworzenie konstruktora
 --------config.php-----------------------------------------------------------------------------------------
 *********15.06.2014 11:50
 -implementacja
