@@ -1,12 +1,12 @@
 <?php
 #include('config.php');
 /*
- * m.framework - engine - v.1.1.1.0 a
- * 20 czerwca 2014 10:19
+ * m.framework - engine - v.2.0.0.2a
+ * 19 Sierpnia 2014 15:14
  * 
  * Copyright by Mateusz Wiśniewski © 2014 
  */
-$mf_ver_engine = '1.1.1.0a';
+$mf_ver_engine = '2.0.0.2a';
 class mf_engine{	
 	function getExtension($str) {
     	     $i = strrpos($str,".");
@@ -115,6 +115,15 @@ class mf_head{
 		echo '<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />' . "\n";
 		echo "<title>$title</title>" . "\n";
 	}
+	function html5_meta_tags($robots, $autor, $keywords, $description, $title, $revisit){
+		echo "<meta name=\"robots\" content=\"$robots\" />" . "\n"; //all
+		echo "<meta name=\"author\" content=\"$autor\" />" . "\n";
+		echo "<meta name=\"keywords\" content=\"$keywords\" />" . "\n";
+		echo "<meta name=\"revisit-after\" content=\"$revisit\" />" . "\n"; //2 days
+		echo "<meta name=\"description\" content=\"$description\" />" . "\n";
+		echo '<meta charset="utf-8" />' . "\n";
+		echo "<title>$title</title>" . "\n";
+	}
 	
 	function html_doctype(){
 		echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">' . "\n";
@@ -123,8 +132,26 @@ class mf_head{
 	function html_css($sciezka){
 		echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"$sciezka\" />" . "\n";
 	}
+	function html5_css($sciezka){
+		echo "<link rel=\"stylesheet\" href=\"$sciezka\" />" . "\n";
+	}
 	function html_script($sciezka){
-		echo "<script src=\"$sciezka\"></script>" . "\n";
+		echo "<script type=\"text/javascript\" src=\"$sciezka\"></script>" . "\n";
+	}
+	function html5_script($sciezka){
+		echo "<script type=\"text/javascript\" src=\"$sciezka\"></script>" . "\n";
+	}
+	function cookieinfo(){
+		if(!isset($_COOKIE['wizyta'])) {
+			setcookie('wizyta', time(), time() + 30 * 86400);
+			echo "<div class=\"cookie\" id=\"cookiediv\"><div class=\"cookieinfo\">
+					<h3>Ta strona wykorzystuje pliki cookies</h3>
+					<p>W tym serwisie stosuje się pliki cookies, które są zapisywane na dysku użytkownika. Zablokowanie możliwości zapisywania plików cookies może spowodować utrudnienia lub brak działania niektórych funkcji serwisu.</p> <p>Niedokonanie zmian ustawień przeglądarki internetowej na ustawienia blokujące cookies jest jednoznaczne z wyrażeniem zgody na ich zapisywanie.</p>
+					<div class=\"cookiebutton\" id=\"cbutton\">OK, Rozumiem</div>
+				</div>
+				</div>
+				";
+		}
 	}
 }
 
