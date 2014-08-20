@@ -1,6 +1,6 @@
 <?php
 /* Rozszerzenie 'Portfolio' dla m.framework
- * Wersja rozszerzenia: 1.0.0.0 a
+ * Wersja rozszerzenia: 1.0.1.0 a
 * 20 Sierpnia 2014 11:29
 * Mateusz Wiśniewski © 2014
 *
@@ -55,7 +55,7 @@ class mf_portfolio{
 		return $this->_elements;		
 	}
 	public function getElementsByCategory($cat){
-		$query = "SELECT * FROM ".$this->_mf_prefix."portfolio WHERE CATEOGRY='$cat' AND HIDDEN='0'";
+		$query = "SELECT * FROM ".$this->_mf_prefix."portfolio WHERE CATEGORY='$cat' AND HIDDEN='0'";
 		$this->_elements = $this->_db->mf_mysql_query($query);
 		$this->_elementsnum = mysql_num_rows($this->_elements);
 		return $this->_elements;		
@@ -64,7 +64,7 @@ class mf_portfolio{
 		return $this->_elementsnum;
 	}
 	public function countElementsByCategory($cat){//liczenie elementow wg kategorii
-		$query = "SELECT * FROM ".$this->_mf_prefix."portfolio WHERE CATEOGRY='$cat' AND HIDDEN='0'";
+		$query = "SELECT * FROM ".$this->_mf_prefix."portfolio WHERE CATEGORY='$cat' AND HIDDEN='0'";
 		$result = $this->_db->mf_mysql_query($query);
 		$this->_elementsnum = mysql_num_rows($result);
 		return $this->_elementsnum;
