@@ -1,37 +1,39 @@
 <?php
 /* Rozszerzenie 'Newsy' dla m.framework
- * Wersja rozszerzenia: 2.1.0.0 a
+ * Wersja rozszerzenia: 1.0.0.0 a
 *19 Sierpnia 2014 10:21
 * Mateusz Wiśniewski © 2014
 *
 * mf_news
 * 
 * 
-* DO KONSTRUKTORA NALEŻY PRZEKAZAĆ W ZMIENNEJ $db obiekt klasy mf_db A W ZMIENNEJ $mf_prefix PREFIX DO BAZY DANYCH
+* DO KONSTRUKTORA NALEŻY PRZEKAZAĆ W ZMIENNEJ $db obiekt klasy mf_db A W ZMIENNEJ $mf_prefix PREFIX DO BAZY DANYCH, W ZMIENEJ $engine OBIEKT KLASY mf_engine
 */
 class mf_news{
-	private $_db = null;
-	private $_mf_prefix = null;
-	private $_id = null;
-	private $_title = null;
-	private $_content = null;
-	private $_hidden = null;
-	private $_created = null;
-	private $_edited = null;
-	private $_autor = null;
-	private $_checkall = null; //ilosc wszystkich newsow
-	private $_check = null; //ilosc newsow w zapytaniu
-	private $_array = null; //tablica do przechowywania wyniku z sqla
+	protected $_engine = null;
+	protected $_db = null;
+	protected $_mf_prefix = null;
+	protected $_id = null;
+	protected $_title = null;
+	protected $_content = null;
+	protected $_hidden = null;
+	protected $_created = null;
+	protected $_edited = null;
+	protected $_autor = null;
+	protected $_checkall = null; //ilosc wszystkich newsow
+	protected $_check = null; //ilosc newsow w zapytaniu
+	protected $_array = null; //tablica do przechowywania wyniku z sqla
 	
-	public function __construct($mf_prefix, $db){
+	public function __construct($mf_prefix, $db, $engine){
 		$this->_db = $db;
 		$this->_mf_prefix = $mf_prefix;
+		$this->_engine = $engine;
 	}
 	
 	public function getLastNews($ilosc, $ascdesc){ //ilosc, ASC/DESC
 		$query = "SELECT * FROM ".$this->_mf_prefix."news WHERE HIDDEN='0' ORDER BY CREATED $ascdesc LIMIT $ilosc";
 		$result = $this->_db->mf_mysql_query($query);
-		$this->_check = mysl_num_rows($result);
+		$this->_check = mysql_num_rows($result);
 		if($this->_check==0){
 			return null;
 		}
