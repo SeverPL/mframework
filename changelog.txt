@@ -40,6 +40,15 @@ mf_gentime stop() służących do mierzenia czasu generowania strony
 ---------mf_portfolio------------------------------------------------------------------------------------------
 *********19.08.2014 11:29 v1.0.0
 - implementacja klasy mf_portfolio v1.0
+*16:25 - v1.0.1
+- Naprawa błędu SQL w metodzie getElementsByCategory($cat)
+---------mf_portfolio_ui------------------------------------------------------------------------------------------
+*********19.08.2014 11:29 v1.0.0
+- implementacja klasy mf_portfolio v1.0
+** 16:23
+- implementacja: showportfolio(); showCategoryMenu(); showCategoryElements(); showCategoriesMain();
+*********21.08.2014 15:23 v1.1.0
+- showElement(), showGallery(), 
 ---------mf_news_ui-------------------
 ---------mf_pages------------------------------------------------------------------------------------------
 *********15.06.2014 11:14
