@@ -1,6 +1,6 @@
 <?php
 /* Rozszerzenie 'Portfolio UI' dla m.framework
- * Wersja rozszerzenia: 1.0.0.0 a
+ * Wersja rozszerzenia: 1.1.0.0 a
 * 20 Sierpnia 2014 11:29
 * Mateusz Wiśniewski © 2014
 *
@@ -21,14 +21,23 @@
 */
 
 class mf_portfolio_ui extends mf_portfolio{
+	private $_images = null;
+	private $_imagesamount = null;
 	
 	public function showPortfolio($tytul, $opis){
 		if(isset($_GET['category']) AND !isset($_GET['id'])){ //widok kategorii
+			echo '<aside><nav>';
 			$this->showCategoryMenu();
+			echo '</nav></aside><article>';
 			$this->showCategoryElements();
+			echo '</article>';
 		}
 		elseif(isset($_GET['category']) AND isset($_GET['id'])){ //widok elementu
-			echo 'pozycja';
+			echo '<aside><nav>';
+			$this->showCategoryMenu();
+			echo '</nav></aside><article>';
+			$this->showElement();
+			echo '</article>';
 		}
 		else{ //widok główny działu
 			echo '<article>';
@@ -43,6 +52,14 @@ class mf_portfolio_ui extends mf_portfolio{
 		echo'<div class="PortfolioCategoryMenu">';
 		while($row = mysql_fetch_assoc($this->_categories)){
 			echo '<div class="PortfolioMenuBox"><a href="index.php?page=projects&amp;category='.$row['ID'].'">'.$row['TITLE'].'</a></div>';
+				if($_GET['category']==$row['ID']){
+					$this->getElementsByCategory($_GET['category']);
+					while($row = mysql_fetch_assoc($this->_elements)){
+						echo '<div class="PortfolioSubmenuBox">';
+						echo '<a href="index.php?page=projects&amp;category='.$_GET['category'].'&amp;id='.$row['ID'].'" class="link">&raquo; '.$row['TITLE'].'</a>';
+						echo '</div>';
+					}
+				}
 		}
 		echo '</div>';
 	}
@@ -72,5 +89,31 @@ class mf_portfolio_ui extends mf_portfolio{
 			if($row['CATIMG']!=null){echo '<img src="images/www.png" alt="Strony WWW" />';}
 			echo '<a href="index.php?page=projects&amp;category='.$row['ID'].'">'.$row['TITLE'].'</a></div>';
 		}
+	}
+	private function showElement(){
+		$this->getElementById($_GET['id']);
+		$row = mysql_fetch_assoc($this->_elements);
+		$this->_images = $row['IMAGES'];
+		$this->_imagesamount = $row['IMAGESAMOUNT'];
+		echo '<div class="PortfolioElementsContainer">';
+			echo '<h1>'.$row['TITLE'].'</h1>';
+			echo $row['DESC'];
+			$this->showGallery();
+		echo '</div>';
+	}
+	private function showGallery(){
+		echo '<h1>Galeria</h1>';
+		if($this->_imagesamount==0){}
+		elseif($this->_imagesamount==1){
+			echo '<img src="'.$this->_images.'(1).png" alt="" />';
+		}
+		else{
+			echo '<div class="highslide-gallery">';
+			for($i=1;$i<=$this->_imagesamount;$i++){
+				echo'<a class="highslide" onclick="return hs.expand(this)" href="'.$this->_images.'('.$i.').png"> <img title="Powiększ" src="'.$this->_images.'('.$i.')_t.png" alt="test" /> </a>';
+				echo '<div class="highslide-caption"></div>';			
+			}
+			echo '</div>';
+		}		
 	}
 }
