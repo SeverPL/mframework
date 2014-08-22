@@ -60,6 +60,7 @@ class mf_portfolio_ui extends mf_portfolio{
 						echo '</div>';
 					}
 				}
+			
 		}
 		echo '</div>';
 	}

@@ -463,3 +463,26 @@ height:auto;
 	padding: 5px;
 	margin-right:10px;
 }
+.SideNewsBox{
+	font-size:14px;
+	border-bottom:1px dashed #303030;
+	padding-bottom:5px;
+	padding-top:5px;
+}
+.SideNewsBox h1{
+	font-size:18px;
+	margin:0px;
+}
+.SideNewsBox p{
+	margin:0px;
+}
+.SideNewsBox a{
+	
+}
+.data {
+	font-size:12px;
+}
+.NewsBoxBottom{
+	font-size:12px;
+	text-align:right;
+}

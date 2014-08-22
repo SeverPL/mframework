@@ -1,6 +1,6 @@
 <?php 
 /* Rozszerzenie 'Newsy' dla m.framework
- * Wersja rozszerzenia: 1.0.0.0 a
+ * Wersja rozszerzenia: 1.0.1.0 a
 * 20 Sierpnia 2014 09:27
 * Mateusz Wiśniewski © 2014
 *
@@ -9,7 +9,7 @@
 class mf_news_ui extends mf_news{
 	private $_result = null;
 	
-	public function pokazsideNewsy($ilosc, $ascdesc){
+	public function pokazsideNewsy($ilosc, $ascdesc,$showalllink){
 		$this->_result = $this->getLastNews($ilosc, $ascdesc);
 		
 		if($this->_result==null){echo 'NULL';}
@@ -23,13 +23,16 @@ class mf_news_ui extends mf_news{
 				$this->_edited = $row['EDITED'];
 				$this->_autor = $row['AUTOR'];
 				
+				echo '<aside>';
 				echo'<div class="SideNewsBox">';
-					echo '<h3>'.$this->_title.'</h3>';
+					echo '<a href="index.php?page=news&amp;id='.$row['ID'].'"><h1>'.$this->_title.'</h1></a>';
 					echo '<p class="data">'.$this->_created.'</p>';
+					echo '<p>'.$row['SHORTCONTENT'].'</p>';
 				echo'</div>';
+				echo '</aside>';
 			}
 		}
-		echo '<div class="NewsBoxBottom">pokaż wszystkie &raquo;';
+		if($showalllink==true){echo '<div class="NewsBoxBottom">pokaż wszystkie &raquo;';}
 	}
 }
 
