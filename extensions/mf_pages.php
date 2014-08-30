@@ -54,27 +54,45 @@ class mf_pages{
 			return false;
 		}	
 	}
-	
+	/**
+	 * Zwraca ID
+	 * @return int ID strony
+	 */
 	public function getId(){ //zwrot id
 		return $this->_id;
 	}
-	
+	/**
+	 * Zwraca tytuł
+	 * @return string tytuł strony
+	 */
 	public function getTitle(){ //zwrot id
 		return $this->_title;
 	}
-	
+	/**
+	 * Zwraca treść
+	 * @return string treść
+	 */
 	public function getContent(){ //zwrot zawartości
 		return $this->_content;
 	}
-	
+	/**
+	 * Zwraca datę utworzenia
+	 * @return string data utworzenia
+	 */
 	public function getCreated(){ //zwrot daty utworzenia
 		return $this->_created;
 	}
-	
+	/**
+	 * Zwraca datę edycji
+	 * @return string data edycji
+	 */
 	public function getEdited(){ //zwrot daty edycji
 		return $this->_edited;
 	}
-	
+	/**
+	 * Zwraca parametr hidden
+	 * @return int parametr hidden 
+	 */
 	public function getHidden(){ //zwrot parametru hidden
 		return $this->_hidden;
 	}
