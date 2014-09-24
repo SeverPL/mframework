@@ -1,7 +1,7 @@
 <?php 
 /**
 *  Rozszerzenie 'Newsy' dla m.framework - klasa wyświetlająca
-* @version 1.1.1.0 a
+* @version 1.1.2.0 a
 * @author Mateusz Wiśniewski 
 * 20 Sierpnia 2014 09:27
 * © 2014 
@@ -25,20 +25,20 @@ class mf_news_ui extends mf_news{
 				$this->_title = $row['TITLE'];
 				$this->_content = $row['CONTENT'];
 				$this->_created = $row['CREATED'];
-				$this->_created = $this->_engine->data($this->_created, 4);
+				$this->_created = mf_engine::data($this->_created, 4);
 				$this->_edited = $row['EDITED'];
 				$this->_autor = $row['AUTOR'];
 				
 				echo '<aside>';
 				echo'<div class="SideNewsBox">';
-					echo '<a href="index.php?page=news&amp;id='.$row['ID'].'"><h1>'.$this->_title.'</h1></a>';
+					echo '<a href="index.php?page=news&amp;id='.$row['ID'].'"><h2>'.$this->_title.'</h2></a>';
 					echo '<p class="data">'.$this->_created.'</p>';
 					echo '<p>'.$row['SHORTCONTENT'].'</p>';
 				echo'</div>';
 				echo '</aside>';
 			}
 		}
-		if($showalllink==true){echo '<div class="NewsBoxBottom"><a href="?page=news">pokaż wszystkie</a> &raquo;';}
+		if($showalllink==true){echo '<div class="NewsBoxBottom"><a href="?page=news">pokaż wszystkie</a> &raquo;</div>';}
 	}
 	/**
 	 * Pokazuje wszystkie newsy z bazy danych
@@ -49,7 +49,7 @@ class mf_news_ui extends mf_news{
 			$this->getAllNews($ascdesc);
 			while ($row = mysql_fetch_assoc($this->_array)){
 				$this->_created = $row['CREATED'];
-				$this->_created = $this->_engine->data($this->_created, 4);
+				$this->_created = mf_engine::data($this->_created, 4);
 				echo'<div class="NewsBox">';
 				echo '<h1>'.$row['TITLE'].'</h1>';
 				echo '<p class="data">'.$this->_created.'</p>';

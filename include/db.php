@@ -1,7 +1,7 @@
 <?php
 /*
- * m.framework - dbconnector - v.2.1.0.0
-* 19 Sierpnia 2014 15:42
+ * m.framework - dbconnector - v.2.1.2.0
+* 24 Września 2014 12:13
 *
 * Copyright by Mateusz Wiśniewski © 2014
 */
@@ -12,7 +12,7 @@ mysql_query("SET NAMES 'utf8'");
 
 class mf_db{
 	
-	public function mf_mysql_query($query){
+	public static function mf_mysql_query($query){
 		global $mf_sql_queries;
 		global $mf_debug_show_queries;
 		$ins = mysql_query($query);
@@ -24,7 +24,7 @@ class mf_db{
 			return $ins;
 		}
 	}
-	public function mf_log($tresc, $typ){
+	public static function mf_log($tresc, $typ){
 		global $mf_prefix;
 		global $mf_debug_log;
 	
@@ -47,7 +47,7 @@ class mf_db{
 	
 			$czas = date("Y-m-d H:i:s");
 			$query = "INSERT INTO ".$mf_prefix."logs SET IP='$akcjaip', AKCJA='$tresc', CZAS='$czas', TYP='$typ'";
-			$this->mf_mysql_query($query);
+			mf_db::mf_mysql_query($query);
 			#===============================================
 		}
 	}

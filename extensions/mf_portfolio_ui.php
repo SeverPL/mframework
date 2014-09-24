@@ -1,6 +1,6 @@
 <?php
 /* Rozszerzenie 'Portfolio UI' dla m.framework
- * Wersja rozszerzenia: 1.1.0.0 a
+ * Wersja rozszerzenia: 1.1.1.0 a
 * 20 Sierpnia 2014 11:29
 * Mateusz Wiśniewski © 2014
 *
@@ -51,12 +51,12 @@ class mf_portfolio_ui extends mf_portfolio{
 		$this->getCategories();
 		echo'<div class="PortfolioCategoryMenu">';
 		while($row = mysql_fetch_assoc($this->_categories)){
-			echo '<div class="PortfolioMenuBox"><a href="index.php?page=projects&amp;category='.$row['ID'].'">'.$row['TITLE'].'</a></div>';
+			echo '<div class="PortfolioMenuBox"><a class="link" href="index.php?page=projects&amp;category='.$row['ID'].'">'.$row['TITLE'].'</a></div>';
 				if($_GET['category']==$row['ID']){
 					$this->getElementsByCategory($_GET['category']);
 					while($row = mysql_fetch_assoc($this->_elements)){
 						echo '<div class="PortfolioSubmenuBox">';
-						echo '<a href="index.php?page=projects&amp;category='.$_GET['category'].'&amp;id='.$row['ID'].'" class="link">&raquo; '.$row['TITLE'].'</a>';
+						echo '<a class="link" href="index.php?page=projects&amp;category='.$_GET['category'].'&amp;id='.$row['ID'].'" >&raquo; '.$row['TITLE'].'</a>';
 						echo '</div>';
 					}
 				}
@@ -87,7 +87,7 @@ class mf_portfolio_ui extends mf_portfolio{
 		$this->getCategories();
 		while($row = mysql_fetch_assoc($this->_categories)){
 			echo '<div class="PortfolioCategoryButton">';
-			if($row['CATIMG']!=null){echo '<img src="images/www.png" alt="Strony WWW" />';}
+			if($row['CATIMG']!=null){echo '<img src="'.$row['CATIMG'].'" alt="Strony WWW" />';}
 			echo '<a href="index.php?page=projects&amp;category='.$row['ID'].'">'.$row['TITLE'].'</a></div>';
 		}
 	}
@@ -106,12 +106,12 @@ class mf_portfolio_ui extends mf_portfolio{
 		echo '<h1>Galeria</h1>';
 		if($this->_imagesamount==0){}
 		elseif($this->_imagesamount==1){
-			echo '<img src="'.$this->_images.'(1).png" alt="" />';
+			echo '<img src="'.$this->_images.'(1).jpg" alt="" />';
 		}
 		else{
 			echo '<div class="highslide-gallery">';
 			for($i=1;$i<=$this->_imagesamount;$i++){
-				echo'<a class="highslide" onclick="return hs.expand(this)" href="'.$this->_images.'('.$i.').png"> <img title="Powiększ" src="'.$this->_images.'('.$i.')_t.png" alt="test" /> </a>';
+				echo'<a class="highslide" onclick="return hs.expand(this)" href="'.$this->_images.'('.$i.').jpg"> <img title="Powiększ" src="'.$this->_images.'('.$i.')_t.png" alt="test" /> </a>';
 				echo '<div class="highslide-caption"></div>';			
 			}
 			echo '</div>';

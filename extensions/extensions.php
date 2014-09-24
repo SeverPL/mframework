@@ -1,9 +1,9 @@
 <?php
-include('nieruchomosci.php');
 include('mf_pages.php');
 include('mf_users.php');
 include('mf_news.php');
 include('mf_news_ui.php');
 include('mf_portfolio.php');
 include('mf_portfolio_ui.php');
+include('mf_adm_upload.php');
 ?>

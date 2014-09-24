@@ -1,8 +1,8 @@
 <?php
 #include('config.php');
 /*
- * m.framework - engine - v.2.1.0.0.a
- * 19 Sierpnia 2014 15:14
+ * m.framework - engine - v.2.1.1.0.a
+ * 24 Września 2014 11:47
  * 
  * Copyright by Mateusz Wiśniewski © 2014 
  */
@@ -15,7 +15,7 @@ class mf_engine{
  		$this->_mf_debug_show_gentime = $mf_debug_show_gentime; 		
  	}
  	
-	function getExtension($str) {
+	public static function getExtension($str) {
     	     $i = strrpos($str,".");
          	if (!$i) { return ""; } 
          	$l = strlen($str) - $i;
@@ -23,7 +23,7 @@ class mf_engine{
          	return $ext;
  	}
  	
- 	function tnij($string, $limit, $break=".", $pad="...")
+ 	public static function tnij($string, $limit, $break=".", $pad="...")
  	{
  		// return with no change if string is shorter than $limit
  		if(strlen($string) <= $limit) return $string;
@@ -39,7 +39,7 @@ class mf_engine{
  	}
  
 
- 	function data($timestamp, $tryb){
+ 	public static function data($timestamp, $tryb){
  		//wersja 1.0.0.2
  		$rok = substr($timestamp, 0, -15);
  		$miesiac = substr($timestamp, 5, 2);

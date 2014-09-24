@@ -17,16 +17,14 @@ class mf_news{
 	/**
 	* Rozszerzenie 'Newsy' dla m.framework
 	* 28 Sierpnia 2014 12:38 © 2014
-	* @version 1.1.0.0 a
+	* @version 1.1.1.0 a
 	* @author Mateusz Wiśniewski
 	* @param string $mf_prefix prefix bazy danych
 	* @param object $db obiekt klasy mf_db
 	* @param object $engine obiekt klasy mf_engine
 	*/
-	public function __construct($mf_prefix, $db, $engine){
-		$this->_db = $db;
+	public function __construct($mf_prefix){
 		$this->_mf_prefix = $mf_prefix;
-		$this->_engine = $engine;
 	}
 	
 	/**
@@ -40,7 +38,7 @@ class mf_news{
 
 	public function getLastNews($ilosc, $ascdesc){ //ilosc, ASC/DESC
 		$query = "SELECT * FROM ".$this->_mf_prefix."news WHERE HIDDEN='0' ORDER BY CREATED $ascdesc LIMIT $ilosc";
-		$result = $this->_db->mf_mysql_query($query);
+		$result = mf_db::mf_mysql_query($query);
 		$this->_check = mysql_num_rows($result);
 		if($this->_check==0){
 			return null;
@@ -70,7 +68,7 @@ class mf_news{
 	 */
 	public function getAllNews($ascdesc){  
 		$query = "SELECT * FROM ".$this->_mf_prefix."news WHERE HIDDEN='0' ORDER BY CREATED $ascdesc";
-		$result = $this->_db->mf_mysql_query($query);
+		$result = mf_db::mf_mysql_query($query);
 		$this->_check = mysql_num_rows($result);
 		if($this->_check==0){
 			throw new Exception('Brak newsów w bazie danych!');
@@ -104,7 +102,7 @@ class mf_news{
 		else{
 			$query = "SELECT * FROM ".$this->_mf_prefix."news' ORDER BY ID DESC";
 		}
-		$result = $this->_db->mf_mysql_query($query);
+		$result = mf_db::mf_mysql_query($query);
 		$this->_checkall = mysql_num_rows($result);
 		return $this->_checkall;
 	}

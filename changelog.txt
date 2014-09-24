@@ -30,18 +30,32 @@ mf_gentime stop() służących do mierzenia czasu generowania strony
 - dodano cookieinfo(); do klasy mf_head
 - naprawa błędu liczenia czasu generowania strony
 - utworzenie konstruktora klasy
+*******2014-09-24 11:47 - 2.1.1.0
+- getExtension jest teraz metodą statyczną
+- data jest teraz metodą statyczną
+- tnij jest teraz metodą statyczną
 ---------mf_db------------------------------------------------------------------------------------------
+*********24.09.2014 11:08 - 2.1.1.0
+- mf_mysql_query jest teraz metodą statyczną
+*********20.06.2014 18:21 - 2.1.2.0
+- mf_logjest teraz metodą statyczną
 ---------mf_news------------------------------------------------------------------------------------------
 *********19.08.2014 10:21 v1.0.0
 - implementacja klasy mf_news v1.0
+*********24.09.2014 18:11 v1.1.1
+- nie ma potrzeby podawania do konstruktora obiektów mf_db i mf_engine gdyż wymagane metody są teraz metodami statycznymi
 ---------mf_news_ui------------------------------------------------------------------------------------------
 *********20.08.2014 09:27 v1.0.0
 - implementacja klasy mf_news_ui dziedziczącej klase mf_news
+*********24.09.2014 18:11 v1.1.2
+- nie ma potrzeby podawania do konstruktora obiektów mf_db i mf_engine gdyż wymagane metody są teraz metodami statycznymi
 ---------mf_portfolio------------------------------------------------------------------------------------------
 *********19.08.2014 11:29 v1.0.0
 - implementacja klasy mf_portfolio v1.0
 *16:25 - v1.0.1
 - Naprawa błędu SQL w metodzie getElementsByCategory($cat)
+*********24.09.2014 18:28 v1.0.2
+- nie ma potrzeby podawania do konstruktora obiektów mf_db i mf_engine gdyż wymagane metody są teraz metodami statycznymi
 ---------mf_portfolio_ui------------------------------------------------------------------------------------------
 *********19.08.2014 11:29 v1.0.0
 - implementacja klasy mf_portfolio v1.0
@@ -49,6 +63,8 @@ mf_gentime stop() służących do mierzenia czasu generowania strony
 - implementacja: showportfolio(); showCategoryMenu(); showCategoryElements(); showCategoriesMain();
 *********21.08.2014 15:23 v1.1.0
 - showElement(), showGallery(), 
+*********24.09.2014 18:29 v1.1.1
+- nie ma potrzeby podawania do konstruktora obiektów mf_db i mf_engine gdyż wymagane metody są teraz metodami statycznymi
 ---------mf_news_ui-------------------
 ---------mf_pages------------------------------------------------------------------------------------------
 *********15.06.2014 11:14
@@ -63,6 +79,8 @@ mf_gentime stop() służących do mierzenia czasu generowania strony
 - usunięcie poprzednich funkcji i mplementacja klasy: mf_pages
 *******2014-08-19 21:56 - 2.1.0.0
 - Utworzenie konstruktora do którego przekazywany jest obiekt klasy mf_db i prefix bazy danych
+*********24.09.2014 18:11 v1.0.2
+- nie ma potrzeby podawania do konstruktora obiektów mf_db gdyż wymagane metody są teraz metodami statycznymi
 ---------mf_users------------------------------------------------------------------------------------------
 ********** 21.06.2014 13:35
 -rozpoczęcie (1.0.0.1a)
@@ -76,6 +94,8 @@ implementacja mf_users_createuser()
 *******2014-08-19 15:15 - 2.1.0.0
 - Przepisanie skryptu na obiektowosc
 - utworzenie konstruktora
+*********24.09.2014 18:25 v2.1.1
+- nie ma potrzeby podawania do konstruktora obiektów mf_db gdyż wymagane metody są teraz metodami statycznymi
 --------config.php-----------------------------------------------------------------------------------------
 *********15.06.2014 11:50
 -implementacja
